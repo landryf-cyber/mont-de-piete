@@ -1,0 +1,165 @@
+/* Palette stricte (CLAUDE.md) : 5 couleurs, pas une de plus. */
+:root {
+  --fond: #1b1a17;
+  --bois: #5a3e2b;
+  --lampe: #e8b04b;
+  --papier: #efe6d2;
+  --etrange: #6fd3c4; /* réservé aux propriétés étranges et au mystère */
+
+  --serif: 'Iowan Old Style', 'Palatino Linotype', Palatino, Georgia, serif;
+  --machine: 'Courier Prime', 'Courier New', Courier, monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+}
+
+body {
+  background: var(--fond);
+  color: var(--papier);
+  font-family: var(--serif);
+  -webkit-tap-highlight-color: transparent;
+  overflow-x: hidden;
+}
+
+#app {
+  max-width: 480px;
+  min-height: 100dvh;
+  margin: 0 auto;
+  /* halo de la lampe, en haut de l'écran */
+  background: radial-gradient(ellipse at 50% 0%, rgb(232 176 75 / 0.18), transparent 60%);
+}
+
+.screen {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: max(24px, env(safe-area-inset-top)) 16px max(24px, env(safe-area-inset-bottom));
+}
+
+/* --- Écran titre --- */
+.title-screen {
+  justify-content: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.lamp {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--lampe);
+  box-shadow: 0 0 60px 20px rgb(232 176 75 / 0.35);
+  margin-bottom: 24px;
+  animation: vacille 4s ease-in-out infinite;
+}
+
+@keyframes vacille {
+  0%, 100% { opacity: 1; }
+  45% { opacity: 0.85; }
+  50% { opacity: 0.95; }
+}
+
+.title {
+  font-size: 2.6rem;
+  font-weight: normal;
+  letter-spacing: 0.02em;
+  color: var(--lampe);
+  margin: 0;
+}
+
+.subtitle {
+  margin: 0 0 32px;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+/* --- Boutons : gros, au pouce --- */
+.btn {
+  font: inherit;
+  font-size: 1.15rem;
+  min-height: 56px;
+  width: 100%;
+  max-width: 320px;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.08s ease;
+}
+
+.btn:active {
+  transform: scale(0.97);
+}
+
+.btn-primary {
+  background: var(--lampe);
+  color: var(--fond);
+  box-shadow: 0 4px 0 var(--bois);
+}
+
+/* --- Boutique ouverte (provisoire) --- */
+.shop-screen {
+  gap: 24px;
+}
+
+.hud {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.05rem;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--bois);
+}
+
+.money {
+  color: var(--lampe);
+}
+
+.newspaper {
+  width: 100%;
+  background: var(--papier);
+  color: var(--fond);
+  padding: 16px;
+  border-radius: 4px;
+  transform: rotate(-1deg);
+  box-shadow: 0 6px 0 var(--bois);
+}
+
+.newspaper-label {
+  margin: 0 0 6px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  opacity: 0.7;
+}
+
+.newspaper-line {
+  margin: 0;
+  font-family: var(--machine);
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.waiting {
+  margin-top: auto;
+  text-align: center;
+  font-style: italic;
+  opacity: 0.85;
+}
+
+.seed {
+  font-family: var(--machine);
+  font-size: 0.75rem;
+  opacity: 0.4;
+  margin: 0;
+}
