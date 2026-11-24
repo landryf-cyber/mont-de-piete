@@ -132,17 +132,43 @@ Chaque objet possède :
 - `npm run test` : tests
 - `npm run build` : build de production
 
+## Environnement de travail
+- Le projet est développé avec **Claude Code dans le navigateur** (claude.ai/code), sur un dépôt GitHub.
+- Le propriétaire du projet **débute en Git et en code**. Expliquer simplement, sans jargon, ce qu'il doit faire (relire, tester, merger). Ne jamais supposer qu'il sait utiliser un terminal.
+- Il ne peut pas lancer `npm run dev` : il teste uniquement via la **version en ligne** du jeu (voir « Tester le jeu »).
+
+## Tester le jeu
+### Ce que Claude vérifie avant chaque pull request
+1. `npm run test` passe.
+2. `npm run build` passe sans erreur ni avertissement TypeScript.
+3. Le jeu se lance (`npm run dev` ou `npm run preview`) et une journée complète se joue sans erreur dans la console.
+4. L'affichage tient en 390×844 (portrait mobile) sans défilement horizontal.
+
+### Déploiement
+- Le jeu est publié automatiquement à chaque merge sur `main`, via **Netlify** ou **Vercel** (dépôt privé) ou **GitHub Pages** (dépôt public).
+- La configuration doit rester compatible avec les trois : chemins relatifs (`base: './'` dans `vite.config.ts`), sortie dans `dist/`.
+- Si le déploiement n'est pas encore en place, le proposer après la première étape jouable et guider l'utilisateur pas à pas.
+
+### Ce que Claude donne à l'utilisateur dans chaque pull request
+Une section **« Comment tester »** courte et concrète, par exemple :
+> 1. Merge cette pull request.
+> 2. Attends 1 à 2 minutes, puis ouvre le jeu sur ton téléphone.
+> 3. Joue une journée et essaie d'acheter un objet volé : la police doit être mentionnée au bilan.
+> 4. Ce que je veux savoir : est-ce que négocier te donne envie de recommencer ?
+
 ## Git
-- **Un commit par étape jouable** : dès qu'une étape fonctionne (le jeu se lance, les tests passent), on commite. Jamais de commit d'un état cassé sur `main`.
-- **Avant de commiter** : lancer `npm run test` et `npm run build`. Si l'un des deux échoue, on corrige d'abord.
+- Claude Code dans le navigateur travaille sur **une branche par tâche** et ouvre une **pull request** vers `main`. Ne jamais pousser directement sur `main`.
+- **Une pull request = une étape jouable.** Pas de pull request géante qui mélange plusieurs fonctionnalités.
+- **Avant d'ouvrir une pull request** : faire toutes les vérifications de « Tester le jeu ». Si quelque chose échoue, on corrige d'abord.
+- **Description de pull request** en français simple : ce qui a changé (3 lignes max), puis « Comment tester ».
 - **Messages de commit** en français, au format `type: description courte`
   - `feat:` nouvelle fonctionnalité (`feat: ajoute la loupe d'inspection`)
   - `fix:` correction de bug
   - `content:` ajout ou modification de données JSON (objets, clients, dialogues)
   - `balance:` changement de valeurs dans `balance.json`
   - `refactor:`, `test:`, `docs:`, `chore:`
-- **Branches** : une branche par version de la feuille de route (`v0.1`, `v0.2`…), fusionnée dans `main` quand la question de la version est validée. Pour une expérimentation risquée, créer une branche `exp/nom-de-l-idee`.
-- **Tags** : taguer chaque version validée (`git tag v0.1`).
+- Pour une expérimentation risquée, l'indiquer clairement dans le titre de la pull request (`[EXPÉRIMENTAL]`), pour que l'utilisateur sache qu'il peut la refuser sans problème.
+- Quand une version de la feuille de route est validée, proposer de créer une **release GitHub** (`v0.1`, `v0.2`…) pour garder un point de sauvegarde clair.
 - Ne jamais commiter `node_modules/`, `dist/`, des fichiers `.env` ou des clés.
 - Ne jamais réécrire l'historique (`push --force`, `reset --hard` sur des commits partagés) sans demander.
 
