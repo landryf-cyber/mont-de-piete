@@ -10,9 +10,11 @@ import {
   makeOffer,
   nextClient,
   offersFor,
+  pickItem,
   startDay,
   useTool,
 } from './day';
+import { createRng } from './rng';
 import { testBalance as b, testContent as content } from './testFixtures';
 
 /** Force un plancher connu sur le client en cours (le vrai est tiré au hasard). */
@@ -43,9 +45,59 @@ describe('startDay', () => {
     expect(orders.size).toBeGreaterThan(1);
   });
 
+  it('ne donne jamais deux fois le même objet dans la journée', () => {
+    for (let seed = 1; seed < 50; seed++) {
+      const ids = startDay(seed, content, b).visits.map((v) => v.itemId);
+      expect(new Set(ids).size).toBe(ids.length);
+    }
+  });
+
+  it('choisit une réplique d’entrée qui existe', () => {
+    for (let seed = 1; seed < 20; seed++) {
+      for (const v of startDay(seed, content, b).visits) expect([0, 1]).toContain(v.entryLine);
+    }
+  });
+
   it('limite le nombre de clients à clients_par_jour', () => {
     const s = startDay(1, content, { ...b, clients_par_jour: 2 });
     expect(s.visits).toHaveLength(2);
+  });
+});
+
+describe('pickItem', () => {
+  const items = content.items; // montre (normale), bague (volée), stylo (contrefaçon)
+  const count = (intention: 'voleur' | 'menteur' | 'honnete') => {
+    const rng = createRng(123);
+    const tally: Record<string, number> = { montre: 0, bague: 0, stylo: 0 };
+    for (let i = 0; i < 2000; i++) tally[pickItem(items, intention, b, rng).id]++;
+    return tally;
+  };
+
+  it('un voleur apporte surtout des objets volés, mais pas toujours', () => {
+    const t = count('voleur');
+    expect(t.bague / 2000).toBeGreaterThan(0.6);
+    expect(t.montre).toBeGreaterThan(0);
+  });
+
+  it('un menteur apporte surtout des contrefaçons, mais pas toujours', () => {
+    const t = count('menteur');
+    expect(t.stylo / 2000).toBeGreaterThan(0.6);
+    expect(t.montre).toBeGreaterThan(0);
+  });
+
+  it('un client honnête apporte surtout des objets ordinaires, parfois volés sans le savoir', () => {
+    const t = count('honnete');
+    expect(t.montre / 2000).toBeGreaterThan(0.7);
+    expect(t.bague).toBeGreaterThan(0);
+  });
+
+  it('se rabat sur ce qui reste quand une catégorie est vide', () => {
+    const onlyStolen = items.filter((i) => i.vole);
+    expect(pickItem(onlyStolen, 'menteur', b, createRng(1)).id).toBe('bague');
+  });
+
+  it('refuse une liste vide', () => {
+    expect(() => pickItem([], 'voleur', b, createRng(1))).toThrow();
   });
 });
 

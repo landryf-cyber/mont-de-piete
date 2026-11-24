@@ -27,8 +27,8 @@ export interface ItemDef {
 }
 
 export interface ClientLines {
-  /** Ce que dit le client en entrant (2 lignes max). */
-  entree: string;
+  /** Ce que le client peut dire en entrant (une est tirée au hasard, 2 lignes max). */
+  entree: string[];
   /** Quand il accepte ton offre. */
   accepte: string;
   /** Quand il contre-propose. « {prix} » est remplacé par son prix. */
@@ -42,8 +42,8 @@ export interface ClientDef {
   nom: string;
   /** Apparence en quelques mots (servira à dessiner la silhouette). */
   apparence: string;
+  /** Intention cachée. Elle influence aussi l'objet apporté (voir balance.json). */
   intention: Intention;
-  objet: string;
   repliques: ClientLines;
 }
 

@@ -4,12 +4,14 @@
     "nom": "Madame Orsini",
     "apparence": "vieille dame, chapeau cloche, gants",
     "intention": "honnete",
-    "objet": "montre-gousset",
     "repliques": {
-      "entree": "Elle était à mon mari. Elle n'a jamais été à l'heure, lui non plus.",
-      "accepte": "Prenez-en soin. Elle déteste qu'on l'attende.",
+      "entree": [
+        "C'était à mon mari. Je préfère que ça serve à quelqu'un.",
+        "Je l'ai depuis quarante ans. Je sais exactement d'où ça vient."
+      ],
+      "accepte": "Prenez-en soin. Il y tenait.",
       "contre": "Je ne descendrai pas sous {prix} ¤. C'est un souvenir.",
-      "part": "Tant pis. Je reviendrai… dans cinq minutes, peut-être."
+      "part": "Tant pis. Je le garderai encore un peu."
     }
   },
   {
@@ -17,9 +19,12 @@
     "nom": "Le jeune homme au col relevé",
     "apparence": "silhouette mince, col relevé, casquette",
     "intention": "voleur",
-    "objet": "bague-gravee",
     "repliques": {
-      "entree": "Vite, s'il vous plaît. C'est… un héritage. De ma tante.",
+      "entree": [
+        "Vite, s'il vous plaît. C'est… un héritage. De ma tante.",
+        "Je suis pressé. Vous prenez ou pas ?",
+        "Trouvé dans un grenier. Le mien. Enfin, presque."
+      ],
       "accepte": "Parfait. Vous ne m'avez jamais vu.",
       "contre": "{prix} ¤, et je file. Décidez-vous.",
       "part": "Laissez tomber. Y a d'autres boutiques."
@@ -30,12 +35,59 @@
     "nom": "Monsieur Pélissier",
     "apparence": "costume trop grand, moustache cirée",
     "intention": "menteur",
-    "objet": "stylo-ministre",
     "repliques": {
-      "entree": "Ce stylo a signé la paix de 1919. Enfin, presque. J'y étais.",
+      "entree": [
+        "Pièce unique. Le dernier propriétaire était un comte. Ou un duc.",
+        "On m'en a offert le triple à Paris. Mais vous m'êtes sympathique."
+      ],
       "accepte": "Vous faites l'affaire du siècle, mon ami.",
-      "contre": "Pour un objet historique ? {prix} ¤, c'est donné.",
-      "part": "Vous ne reconnaissez pas l'Histoire quand elle entre."
+      "contre": "Pour une pièce pareille ? {prix} ¤, c'est donné.",
+      "part": "Vous ne reconnaissez pas la qualité quand elle entre."
+    }
+  },
+  {
+    "id": "agathe",
+    "nom": "Agathe",
+    "apparence": "étudiante, mitaines, écharpe trop longue",
+    "intention": "desespere",
+    "repliques": {
+      "entree": [
+        "Le loyer tombe vendredi. Je prends ce que vous me donnez.",
+        "Trouvé au marché aux puces. Il me faut juste de quoi manger."
+      ],
+      "accepte": "Merci. Vraiment. Je ne reviendrai pas, promis.",
+      "contre": "S'il vous plaît… {prix} ¤, au moins ?",
+      "part": "D'accord. Je vais essayer ailleurs."
+    }
+  },
+  {
+    "id": "dr-vasseur",
+    "nom": "Docteur Vasseur",
+    "apparence": "lunettes rondes, loupe au cou",
+    "intention": "collectionneur",
+    "repliques": {
+      "entree": [
+        "Cote actuelle : un peu plus que votre estimation. Je vérifie toujours.",
+        "Je m'en sépare à regret. Ma collection manque de place, pas d'envie."
+      ],
+      "accepte": "Correct. Vous connaissez votre métier.",
+      "contre": "Soyons sérieux : {prix} ¤. C'est le prix du marché.",
+      "part": "Dommage. Je pensais que vous saviez compter."
+    }
+  },
+  {
+    "id": "femme-impermeable",
+    "nom": "La femme à l'imperméable",
+    "apparence": "imperméable serré, carnet à la main",
+    "intention": "enqueteur",
+    "repliques": {
+      "entree": [
+        "Vous avez beaucoup de clients en ce moment ? Simple curiosité.",
+        "On m'a dit que vous étiez discret. C'est vrai ?"
+      ],
+      "accepte": "Merci. Je repasserai sûrement.",
+      "contre": "{prix} ¤. Et vous me direz qui d'autre est venu ?",
+      "part": "Je vois. Bonne soirée. Je note votre adresse."
     }
   }
 ]

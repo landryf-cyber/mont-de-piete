@@ -2,14 +2,53 @@
   {
     "id": "montre-gousset",
     "nom": "Montre de gousset",
-    "description": "Argent terni. Le couvercle porte un prénom effacé au pouce.",
+    "description": "Argent terni, un prénom effacé au pouce. Elle avance, paraît-il.",
     "valeur_apparente": 120,
     "valeur_reelle": 190,
     "etat": "authentique",
     "vole": false,
     "propriete_etrange": {
       "nom": "En avance",
-      "description": "elle indique toujours l'heure qu'il sera dans cinq minutes."
+      "description": "elle indique l'heure qu'il sera dans cinq minutes."
+    }
+  },
+  {
+    "id": "photo-mariage",
+    "nom": "Photo de mariage encadrée",
+    "description": "Une noce de 1932. Quelqu'un, au fond, semble vous regarder.",
+    "valeur_apparente": 60,
+    "valeur_reelle": 140,
+    "etat": "authentique",
+    "vole": false,
+    "propriete_etrange": {
+      "nom": "Invités nomades",
+      "description": "d'un jour à l'autre, les invités changent de place."
+    }
+  },
+  {
+    "id": "cle-laiton",
+    "nom": "Clé en laiton",
+    "description": "Laiton usé, une étiquette en carton : « n° 12 ».",
+    "valeur_apparente": 25,
+    "valeur_reelle": 110,
+    "etat": "authentique",
+    "vole": false,
+    "propriete_etrange": {
+      "nom": "Porte disparue",
+      "description": "elle ouvre la porte du n° 12, démoli en 1961."
+    }
+  },
+  {
+    "id": "parapluie-noir",
+    "nom": "Parapluie noir",
+    "description": "Une baleine cassée. Il sent vaguement le soleil.",
+    "valeur_apparente": 40,
+    "valeur_reelle": 90,
+    "etat": "abime",
+    "vole": false,
+    "propriete_etrange": {
+      "nom": "Toujours sec",
+      "description": "aucune goutte de pluie ne l'a jamais touché."
     }
   },
   {
@@ -22,12 +61,93 @@
     "vole": true
   },
   {
-    "id": "stylo-ministre",
+    "id": "appareil-soufflet",
+    "nom": "Appareil photo à soufflet",
+    "description": "Cuir et laiton. Une pellicule est encore à l'intérieur.",
+    "valeur_apparente": 160,
+    "valeur_reelle": 170,
+    "etat": "authentique",
+    "vole": true
+  },
+  {
+    "id": "boucles-perles",
+    "nom": "Boucles d'oreilles en perles",
+    "description": "Deux perles d'un blanc parfait. Un peu trop parfait.",
+    "valeur_apparente": 130,
+    "valeur_reelle": 15,
+    "etat": "contrefacon",
+    "vole": true
+  },
+  {
+    "id": "stylo-plume",
     "nom": "Stylo plume",
     "description": "Laqué noir, plume dorée. Il aurait signé un traité.",
     "valeur_apparente": 150,
     "valeur_reelle": 15,
     "etat": "contrefacon",
+    "vole": false
+  },
+  {
+    "id": "tableau-signe",
+    "nom": "Petit tableau signé",
+    "description": "Un port au crépuscule. La signature brille un peu trop.",
+    "valeur_apparente": 220,
+    "valeur_reelle": 25,
+    "etat": "contrefacon",
+    "vole": false
+  },
+  {
+    "id": "medaille-militaire",
+    "nom": "Médaille militaire",
+    "description": "Bronze, ruban délavé. « Bataille de Sainte-Odile, 1916 ».",
+    "valeur_apparente": 80,
+    "valeur_reelle": 8,
+    "etat": "contrefacon",
+    "vole": false
+  },
+  {
+    "id": "gramophone",
+    "nom": "Gramophone de salon",
+    "description": "Pavillon en cuivre. La manivelle refuse de tourner.",
+    "valeur_apparente": 180,
+    "valeur_reelle": 80,
+    "etat": "abime",
+    "vole": false
+  },
+  {
+    "id": "service-the",
+    "nom": "Service à thé",
+    "description": "Porcelaine fine, six tasses. L'une est fêlée, sans bruit.",
+    "valeur_apparente": 110,
+    "valeur_reelle": 50,
+    "etat": "abime",
+    "vole": false
+  },
+  {
+    "id": "machine-ecrire",
+    "nom": "Machine à écrire",
+    "description": "Noire, lourde, fière. Il lui manque la touche E.",
+    "valeur_apparente": 140,
+    "valeur_reelle": 60,
+    "etat": "abime",
+    "vole": false
+  },
+  {
+    "id": "boite-cigares",
+    "nom": "Boîte à cigares",
+    "description": "Acajou verni, vide. Elle sent encore le tabac de quelqu'un.",
+    "valeur_apparente": 45,
+    "valeur_reelle": 55,
+    "etat": "authentique",
+    "vole": false
+  },
+  {
+    "id": "jumelles-theatre",
+    "nom": "Jumelles de théâtre",
+    "description": "Nacre et laiton. Elles ont vu beaucoup de dernières scènes.",
+    "valeur_apparente": 70,
+    "valeur_reelle": 75,
+    "etat": "authentique",
     "vole": false
   }
 ]

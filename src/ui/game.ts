@@ -49,7 +49,7 @@ export function runDay(
     const visit = currentVisit(state);
     const client = findClient(content, visit.clientId);
     const item = findItem(content, visit.itemId);
-    if (!line) line = client.repliques.entree;
+    if (!line) line = client.repliques.entree[visit.entryLine] ?? '';
 
     const toolDots = '●'.repeat(state.toolUsesLeft) + '○'.repeat(balance.utilisations_outils_par_jour - state.toolUsesLeft);
     const results = visit.revealed
