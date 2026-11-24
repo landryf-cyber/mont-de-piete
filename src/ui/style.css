@@ -163,3 +163,187 @@ body {
   opacity: 0.4;
   margin: 0;
 }
+
+/* --- Journée (interface brute de l'étape 2) --- */
+.client-screen,
+.end-screen {
+  gap: 16px;
+}
+
+.tool-dots {
+  letter-spacing: 0.15em;
+  color: var(--lampe);
+}
+
+.client {
+  width: 100%;
+  text-align: center;
+}
+
+.client-name {
+  margin: 0;
+  font-size: 1.3rem;
+  color: var(--lampe);
+}
+
+.client-look {
+  margin: 2px 0 10px;
+  font-size: 0.85rem;
+  font-style: italic;
+  opacity: 0.6;
+}
+
+.client-line {
+  margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.4;
+  min-height: 3em;
+}
+
+.item-card {
+  width: 100%;
+  background: var(--papier);
+  color: var(--fond);
+  padding: 14px 16px;
+  border-radius: 4px;
+  box-shadow: 0 6px 0 var(--bois);
+}
+
+.item-name {
+  margin: 0 0 4px;
+  font-size: 1.2rem;
+  font-weight: normal;
+}
+
+.item-desc {
+  margin: 0 0 10px;
+  font-style: italic;
+  line-height: 1.35;
+}
+
+.item-prices {
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: 0.9rem;
+}
+
+.tool-results {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 10px 0 0;
+  border-top: 1px dashed var(--bois);
+  font-family: var(--machine);
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.tool-results .strange {
+  color: var(--fond);
+  background: var(--etrange);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.actions {
+  width: 100%;
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.tools {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.offers {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+  transform: none;
+}
+
+.btn-tool {
+  max-width: none;
+  min-height: 48px;
+  font-size: 1rem;
+  background: transparent;
+  color: var(--papier);
+  border: 2px solid var(--bois);
+}
+
+.btn-offer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: none;
+  background: var(--bois);
+  color: var(--papier);
+}
+
+.btn-offer span:last-child {
+  color: var(--lampe);
+}
+
+.btn-ghost {
+  max-width: none;
+  background: transparent;
+  color: var(--papier);
+  border: 2px solid var(--bois);
+}
+
+.offers .btn-primary {
+  max-width: none;
+}
+
+.outcome {
+  margin: 0;
+  text-align: center;
+}
+
+.summary {
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.summary li {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.95rem;
+}
+
+.summary-total {
+  margin: 4px 0;
+}
+
+.summary-total.big {
+  font-size: 1.3rem;
+}
+
+.gain {
+  color: var(--bois);
+}
+
+.loss {
+  color: var(--fond);
+  font-style: italic;
+}
+
+.end-screen .item-card {
+  margin-top: 8px;
+}
