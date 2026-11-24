@@ -1,7 +1,7 @@
-import type { Balance, ClientDef, ItemDef, OfferLevel, Tool } from '../state/content';
+import type { Balance, ClientDef, Intention, ItemDef, OfferLevel, Tool } from '../state/content';
 import type { DayState, Visit } from '../state/dayState';
 import { askingPrice, evaluateOffer, floorPrice, offerPrice, type OfferResult } from './negotiation';
-import { createRng } from './rng';
+import { createRng, type Rng } from './rng';
 
 /**
  * Déroulé d'une journée, en fonctions pures :
@@ -27,16 +27,43 @@ export function findClient(content: Content, id: string): ClientDef {
   return client;
 }
 
-/** Prépare la journée : ordre des clients, prix demandés et planchers cachés (tirés avec la graine). */
+/**
+ * Tire l'objet qu'apporte un client, parmi ceux encore disponibles aujourd'hui.
+ * C'est une tendance, pas une règle : un voleur apporte souvent un objet volé,
+ * un menteur souvent une contrefaçon, et n'importe qui peut en apporter sans le savoir.
+ */
+export function pickItem(
+  available: readonly ItemDef[],
+  intention: Intention,
+  balance: Balance,
+  rng: Rng,
+): ItemDef {
+  if (available.length === 0) throw new Error("Plus d'objet disponible");
+  const odds = balance.intentions[intention];
+  const stolen = available.filter((i) => i.vole);
+  const fakes = available.filter((i) => i.etat === 'contrefacon');
+  const ordinary = available.filter((i) => !i.vole && i.etat !== 'contrefacon');
+
+  const roll = rng.next();
+  if (roll < odds.objet_vole && stolen.length > 0) return rng.pick(stolen);
+  if (roll < odds.objet_vole + odds.objet_contrefait && fakes.length > 0) return rng.pick(fakes);
+  return rng.pick(ordinary.length > 0 ? ordinary : available);
+}
+
+/** Prépare la journée : clients, objets, prix demandés et planchers cachés (tirés avec la graine). */
 export function startDay(seed: number, content: Content, balance: Balance): DayState {
   const rng = createRng(seed);
   const clients = rng.shuffle(content.clients).slice(0, balance.clients_par_jour);
+  let available = [...content.items];
   const visits: Visit[] = clients.map((client) => {
-    const item = findItem(content, client.objet);
+    if (available.length === 0) throw new Error('Pas assez d’objets pour tous les clients');
+    const item = pickItem(available, client.intention, balance, rng);
+    available = available.filter((i) => i.id !== item.id);
     const estimation = item.valeur_apparente;
     return {
       clientId: client.id,
       itemId: item.id,
+      entryLine: rng.int(0, client.repliques.entree.length - 1),
       estimation,
       asking: askingPrice(estimation, client.intention, balance),
       floor: floorPrice(estimation, client.intention, balance, rng),

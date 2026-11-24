@@ -14,12 +14,12 @@ export const testBalance: Balance = {
   arrondi_prix: 5,
   offres: { basse: 0.4, juste: 0.7, haute: 1.0 },
   intentions: {
-    desespere: { plancher: 0.35, demande: 0.8 },
-    voleur: { plancher: 0.45, demande: 0.9 },
-    honnete: { plancher: 0.65, demande: 1.0 },
-    menteur: { plancher: 0.75, demande: 1.4 },
-    collectionneur: { plancher: 0.9, demande: 1.2 },
-    enqueteur: { plancher: 0.7, demande: 1.0 },
+    desespere: { plancher: 0.35, demande: 0.8, objet_vole: 0.1, objet_contrefait: 0.1 },
+    voleur: { plancher: 0.45, demande: 0.9, objet_vole: 0.7, objet_contrefait: 0.1 },
+    honnete: { plancher: 0.65, demande: 1.0, objet_vole: 0.1, objet_contrefait: 0.1 },
+    menteur: { plancher: 0.75, demande: 1.4, objet_vole: 0.1, objet_contrefait: 0.7 },
+    collectionneur: { plancher: 0.9, demande: 1.2, objet_vole: 0.1, objet_contrefait: 0.1 },
+    enqueteur: { plancher: 0.7, demande: 1.0, objet_vole: 0.1, objet_contrefait: 0.1 },
   },
   variation_plancher: 0.1,
   seuil_contre_offre: 0.75,
@@ -37,13 +37,12 @@ const item = (id: string, over: Partial<ItemDef> = {}): ItemDef => ({
   ...over,
 });
 
-const client = (id: string, objet: string, intention: ClientDef['intention']): ClientDef => ({
+const client = (id: string, intention: ClientDef['intention']): ClientDef => ({
   id,
   nom: id,
   apparence: '',
   intention,
-  objet,
-  repliques: { entree: '', accepte: '', contre: '{prix}', part: '' },
+  repliques: { entree: ['bonjour', 'bonsoir'], accepte: '', contre: '{prix}', part: '' },
 });
 
 export const testContent: Content = {
@@ -53,8 +52,8 @@ export const testContent: Content = {
     item('stylo', { valeur_apparente: 200, valeur_reelle: 20, etat: 'contrefacon' }),
   ],
   clients: [
-    client('a', 'montre', 'honnete'),
-    client('b', 'bague', 'desespere'),
-    client('c', 'stylo', 'collectionneur'),
+    client('a', 'honnete'),
+    client('b', 'desespere'),
+    client('c', 'collectionneur'),
   ],
 };

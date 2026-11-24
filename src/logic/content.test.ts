@@ -14,13 +14,27 @@ describe('contenu JSON', () => {
     expect(new Set(allClients.map((c) => c.id)).size).toBe(allClients.length);
   });
 
-  it('chaque client apporte un objet qui existe', () => {
-    const ids = new Set(allItems.map((i) => i.id));
-    for (const c of allClients) expect(ids, `${c.id} → ${c.objet}`).toContain(c.objet);
+  it('il y a assez d’objets pour une journée, sans doublon', () => {
+    expect(allItems.length).toBeGreaterThanOrEqual(balance.clients_par_jour);
+  });
+
+  it('le prototype v0.1 a 15 objets (4 étranges, 3 volés) et 6 clients', () => {
+    expect(allItems).toHaveLength(15);
+    expect(allItems.filter((i) => i.propriete_etrange)).toHaveLength(4);
+    expect(allItems.filter((i) => i.vole)).toHaveLength(3);
+    expect(allClients).toHaveLength(6);
+  });
+
+  it('chaque client a au moins une réplique d’entrée', () => {
+    for (const c of allClients) expect(c.repliques.entree.length, c.id).toBeGreaterThan(0);
   });
 
   it('chaque intention existe dans balance.json', () => {
     for (const c of allClients) expect(Object.keys(balance.intentions)).toContain(c.intention);
+  });
+
+  it('les descriptions d’objets restent courtes', () => {
+    for (const i of allItems) expect(i.description.length, i.id).toBeLessThanOrEqual(90);
   });
 
   it('chaque objet a un état valide et des valeurs positives', () => {
@@ -37,9 +51,12 @@ describe('contenu JSON', () => {
 
   it('les répliques restent courtes (2 lignes max ≈ 90 caractères)', () => {
     for (const c of allClients) {
-      for (const [k, line] of Object.entries(c.repliques)) {
-        expect(line.length, `${c.id}.${k}`).toBeLessThanOrEqual(90);
-      }
+      const { entree, ...autres } = c.repliques;
+      const lines: [string, string][] = [
+        ...entree.map((l, i): [string, string] => [`entree[${i}]`, l]),
+        ...Object.entries(autres),
+      ];
+      for (const [k, line] of lines) expect(line.length, `${c.id}.${k}`).toBeLessThanOrEqual(90);
     }
   });
 });

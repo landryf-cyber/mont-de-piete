@@ -6,6 +6,8 @@ export type VisitStatus = 'en_cours' | 'contre' | 'achete' | 'parti';
 export interface Visit {
   clientId: string;
   itemId: string;
+  /** Index de la réplique d'entrée choisie dans `repliques.entree`. */
+  entryLine: number;
   /** Estimation à l'œil (valeur apparente). */
   estimation: number;
   /** Prix annoncé par le client. */
