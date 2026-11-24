@@ -1,0 +1,33 @@
+[
+  {
+    "id": "montre-gousset",
+    "nom": "Montre de gousset",
+    "description": "Argent terni. Le couvercle porte un prénom effacé au pouce.",
+    "valeur_apparente": 120,
+    "valeur_reelle": 190,
+    "etat": "authentique",
+    "vole": false,
+    "propriete_etrange": {
+      "nom": "En avance",
+      "description": "elle indique toujours l'heure qu'il sera dans cinq minutes."
+    }
+  },
+  {
+    "id": "bague-gravee",
+    "nom": "Bague gravée",
+    "description": "Argent fin. À l'intérieur : « À H., même après ».",
+    "valeur_apparente": 90,
+    "valeur_reelle": 95,
+    "etat": "authentique",
+    "vole": true
+  },
+  {
+    "id": "stylo-ministre",
+    "nom": "Stylo plume",
+    "description": "Laqué noir, plume dorée. Il aurait signé un traité.",
+    "valeur_apparente": 150,
+    "valeur_reelle": 15,
+    "etat": "contrefacon",
+    "vole": false
+  }
+]

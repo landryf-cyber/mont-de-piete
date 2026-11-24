@@ -1,11 +1,19 @@
 import './ui/style.css';
+import balance from './data/balance.json';
+import clients from './data/clients.json';
+import items from './data/items.json';
+import { startDay, type Content } from './logic/day';
 import { createRng } from './logic/rng';
-import { createGameState } from './state/gameState';
-import { renderTitle, renderShopOpen } from './ui/screens';
+import type { ClientDef, ItemDef } from './state/content';
 import { enterFullscreen } from './ui/fullscreen';
+import { runDay } from './ui/game';
+import { RUMEURS, renderMorning, renderTitle } from './ui/screens';
 
 const app = document.querySelector<HTMLElement>('#app');
 if (!app) throw new Error('#app introuvable');
+const root: HTMLElement = app;
+
+const content: Content = { items: items as ItemDef[], clients: clients as ClientDef[] };
 
 /**
  * Graine de la partie : `?graine=123` dans l'adresse pour rejouer une partie précise,
@@ -14,13 +22,28 @@ if (!app) throw new Error('#app introuvable');
 function readSeed(): number {
   const fromUrl = Number(new URLSearchParams(location.search).get('graine'));
   if (Number.isInteger(fromUrl) && fromUrl > 0) return fromUrl;
+  return randomSeed();
+}
+
+function randomSeed(): number {
   return Math.floor(Math.random() * 1_000_000) + 1;
 }
 
-const state = createGameState(readSeed());
-const rng = createRng(state.seed);
+function playDay(seed: number): void {
+  const rng = createRng(seed);
+  renderMorning(
+    root,
+    { day: 1, money: balance.argent_depart, rumeur: rng.pick(RUMEURS), seed },
+    () => {
+      runDay(root, startDay(seed, content, balance), content, balance, {
+        onReplaySame: () => playDay(seed),
+        onNewDay: () => playDay(randomSeed()),
+      });
+    },
+  );
+}
 
-renderTitle(app, () => {
+renderTitle(root, () => {
   enterFullscreen();
-  renderShopOpen(app, state, rng);
+  playDay(readSeed());
 });

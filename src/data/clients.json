@@ -1,0 +1,41 @@
+[
+  {
+    "id": "mme-orsini",
+    "nom": "Madame Orsini",
+    "apparence": "vieille dame, chapeau cloche, gants",
+    "intention": "honnete",
+    "objet": "montre-gousset",
+    "repliques": {
+      "entree": "Elle était à mon mari. Elle n'a jamais été à l'heure, lui non plus.",
+      "accepte": "Prenez-en soin. Elle déteste qu'on l'attende.",
+      "contre": "Je ne descendrai pas sous {prix} ¤. C'est un souvenir.",
+      "part": "Tant pis. Je reviendrai… dans cinq minutes, peut-être."
+    }
+  },
+  {
+    "id": "col-releve",
+    "nom": "Le jeune homme au col relevé",
+    "apparence": "silhouette mince, col relevé, casquette",
+    "intention": "voleur",
+    "objet": "bague-gravee",
+    "repliques": {
+      "entree": "Vite, s'il vous plaît. C'est… un héritage. De ma tante.",
+      "accepte": "Parfait. Vous ne m'avez jamais vu.",
+      "contre": "{prix} ¤, et je file. Décidez-vous.",
+      "part": "Laissez tomber. Y a d'autres boutiques."
+    }
+  },
+  {
+    "id": "m-pelissier",
+    "nom": "Monsieur Pélissier",
+    "apparence": "costume trop grand, moustache cirée",
+    "intention": "menteur",
+    "objet": "stylo-ministre",
+    "repliques": {
+      "entree": "Ce stylo a signé la paix de 1919. Enfin, presque. J'y étais.",
+      "accepte": "Vous faites l'affaire du siècle, mon ami.",
+      "contre": "Pour un objet historique ? {prix} ¤, c'est donné.",
+      "part": "Vous ne reconnaissez pas l'Histoire quand elle entre."
+    }
+  }
+]

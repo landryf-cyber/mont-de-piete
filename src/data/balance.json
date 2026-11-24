@@ -1,5 +1,26 @@
 {
   "argent_depart": 300,
   "clients_par_jour": 6,
-  "utilisations_outils_par_jour": 3
+  "utilisations_outils_par_jour": 3,
+
+  "arrondi_prix": 5,
+
+  "offres": {
+    "basse": 0.4,
+    "juste": 0.7,
+    "haute": 1.0
+  },
+
+  "intentions": {
+    "desespere":      { "plancher": 0.35, "demande": 0.8 },
+    "voleur":         { "plancher": 0.45, "demande": 0.9 },
+    "honnete":        { "plancher": 0.65, "demande": 1.0 },
+    "menteur":        { "plancher": 0.75, "demande": 1.4 },
+    "collectionneur": { "plancher": 0.9,  "demande": 1.2 },
+    "enqueteur":      { "plancher": 0.7,  "demande": 1.0 }
+  },
+
+  "variation_plancher": 0.1,
+  "seuil_contre_offre": 0.75,
+  "part_vers_demande_contre_offre": 0.5
 }
