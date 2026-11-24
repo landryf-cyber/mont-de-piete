@@ -2,6 +2,7 @@ import './ui/style.css';
 import { createRng } from './logic/rng';
 import { createGameState } from './state/gameState';
 import { renderTitle, renderShopOpen } from './ui/screens';
+import { enterFullscreen } from './ui/fullscreen';
 
 const app = document.querySelector<HTMLElement>('#app');
 if (!app) throw new Error('#app introuvable');
@@ -19,4 +20,7 @@ function readSeed(): number {
 const state = createGameState(readSeed());
 const rng = createRng(state.seed);
 
-renderTitle(app, () => renderShopOpen(app, state, rng));
+renderTitle(app, () => {
+  enterFullscreen();
+  renderShopOpen(app, state, rng);
+});
